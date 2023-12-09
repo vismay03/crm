@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+    return view('welcome');
+});
    Route::resource('company', CompanyController::class);
    Route::resource('employee', EmployeeController::class);
 });
@@ -31,4 +32,3 @@ Route::group(['middleware' => 'auth'], function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
